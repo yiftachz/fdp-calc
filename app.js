@@ -121,3 +121,46 @@ function calculateFDP() {
         finalOnBlockDisplay.textContent = `${blockHours}:${blockMins}`;
     }
 }
+
+document.getElementById('updateBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('updateBtn');
+    btn.textContent = "Checking...";
+    btn.style.borderColor = "var(--border)";
+
+    if ('serviceWorker' in navigator) {
+        try {
+            const registration = await navigator.serviceWorker.getRegistration();
+            if (registration) {
+                await registration.update();
+                
+                if (registration.waiting) {
+                    btn.textContent = "Updating...";
+                    btn.style.color = "var(--success)";
+                    btn.style.borderColor = "var(--success)";
+                    registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+                    setTimeout(() => window.location.reload(), 600);
+                } else {
+                    btn.textContent = "Up To Date ✓";
+                    btn.style.color = "var(--success)";
+                    btn.style.borderColor = "var(--success)";
+                    setTimeout(() => {
+                        btn.textContent = "Refresh ↻";
+                        btn.style.color = "var(--muted)";
+                        btn.style.borderColor = "var(--border)";
+                    }, 2000);
+                }
+            }
+        } catch (error) {
+            btn.textContent = "Error ✗";
+            btn.style.color = "#f87171";
+            btn.style.borderColor = "#f87171";
+            setTimeout(() => {
+                btn.textContent = "Refresh ↻";
+                btn.style.color = "var(--muted)";
+                btn.style.borderColor = "var(--border)";
+            }, 2000);
+        }
+    } else {
+        btn.textContent = "Offline Only";
+    }
+});
