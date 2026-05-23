@@ -1,0 +1,137 @@
+:root {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-main: #e0e0e0;
+    --text-muted: #a0a0a0;
+    --accent: #00e676; /* Clean cockpit green */
+    --border: #333333;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+header h1 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+    color: var(--text-muted);
+    padding: 8px 0;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.input-group:last-child {
+    margin-bottom: 0;
+}
+
+label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+input[type="time"], select {
+    background-color: #2a2a2a;
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    padding: 14px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+    appearance: none; /* Removes default mobile styling arrow safely */
+}
+
+input[type="time"]:focus, select:focus {
+    border-color: var(--accent);
+}
+
+.context-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.inline-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Output Card Styling */
+.output-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #1e1e1e 0%, #151515 100%);
+}
+
+.main-output .value {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-top: 4px;
+}
+
+.highlight {
+    color: var(--accent);
+    text-shadow: 0 0 10px rgba(0, 230, 118, 0.2);
+}
+
+.secondary-outputs {
+    display: flex;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+}
+
+.output-box {
+    flex: 1;
+}
+
+.output-box:first-child {
+    border-right: 1px solid var(--border);
+}
+
+.output-box .value {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-top: 4px;
+}

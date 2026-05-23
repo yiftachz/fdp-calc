@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FDP Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#121212">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>FDP COMMAND</h1>
+        </header>
+
+        <!-- INPUT SECTION -->
+        <main class="card input-card">
+            <div class="input-group">
+                <label for="reportTime">Report Time</label>
+                <!-- native time field allows direct typing on mobile -->
+                <input type="time" id="reportTime" required>
+            </div>
+
+            <div class="input-group">
+                <label for="crewType">Crew Configuration</label>
+                <select id="crewType">
+                    <option value="single_crew" selected>Single Crew</option>
+                    <option value="augmented_3_pilots">Augmented (3 Pilots)</option>
+                    <option value="double_4_pilots">Double (4 Pilots)</option>
+                </select>
+            </div>
+
+            <!-- Inconspicuous Conditional Row -->
+            <div class="context-row">
+                <div class="input-group inline-group" id="sectorGroup">
+                    <label for="sectors">Sectors</label>
+                    <select id="sectors">
+                        <option value="1-2" selected>1-2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7+">7+</option>
+                    </select>
+                </div>
+
+                <div class="input-group inline-group hidden" id="restGroup">
+                    <label for="restClass">Rest Facility</label>
+                    <select id="restClass">
+                        <option value="Class 1">Class 1</option>
+                        <option value="Class 2" selected>Class 2</option>
+                        <option value="Class 3">Class 3</option>
+                    </select>
+                </div>
+            </div>
+        </main>
+
+        <!-- OUTPUT SECTION -->
+        <section class="card output-card">
+            <div class="main-output">
+                <label>Final On-Block</label>
+                <div id="finalOnBlock" class="value highlight">--:--</div>
+            </div>
+            <div class="secondary-outputs">
+                <div class="output-box">
+                    <label>Max FDP</label>
+                    <div id="maxFdp" class="value">--</div>
+                </div>
+                <div class="output-box">
+                    <label>Max FLT</label>
+                    <div id="maxFlt" class="value">--</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Register service worker for 100% offline access
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(() => console.log("Service Worker Active"));
+        }
+    </script>
+</body>
+</html>
