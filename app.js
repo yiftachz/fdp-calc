@@ -1,3 +1,4 @@
+// Embedded Regulatory Data Table from Image
 const regulatoryData = {
     "single_crew": {
         "brackets": [
@@ -34,6 +35,7 @@ const regulatoryData = {
     }
 };
 
+// DOM Elements
 const reportTimeInput = document.getElementById('reportTime');
 const crewTypeInput = document.getElementById('crewType');
 const sectorsInput = document.getElementById('sectors');
@@ -45,29 +47,25 @@ const maxFdpDisplay = document.getElementById('maxFdp');
 const maxFltDisplay = document.getElementById('maxFlt');
 const finalOnBlockDisplay = document.getElementById('finalOnBlock');
 
+// Initialize Defaults & History Logic
 window.addEventListener('DOMContentLoaded', () => {
     const now = new Date();
     const lastEntryTime = localStorage.getItem('lastFdpEntryTime');
     const lastEntryTimestamp = localStorage.getItem('lastFdpTimestamp');
-    const pad = (n) => n.toString().padStart(2, '0');
 
-    // Restore calculation context if updated within a 24-hour bracket window
+    // Default to 'now' unless an entry exists from the last 24 hours
     if (lastEntryTime && lastEntryTimestamp && (now.getTime() - lastEntryTimestamp < 24 * 60 * 60 * 1000)) {
         reportTimeInput.value = lastEntryTime;
     } else {
-        reportTimeInput.value = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        reportTimeInput.value = `${hours}:${minutes}`;
     }
+    
     calculateFDP();
 });
 
-// Inline keyboard parsing with auto-colon spacing injection[cite: 1]
-reportTimeInput.addEventListener('input', (e) => {
-    let v = e.target.value.replace(/[^0-9]/g, '');
-    if (v.length >= 3) v = v.slice(0, 2) + ':' + v.slice(2, 4);
-    e.target.value = v;
-    calculateFDP();
-});
-
+// Manage UI visibility rules based on configuration selection
 crewTypeInput.addEventListener('change', () => {
     if (crewTypeInput.value === 'single_crew') {
         sectorGroup.classList.remove('hidden');
@@ -79,34 +77,43 @@ crewTypeInput.addEventListener('change', () => {
     calculateFDP();
 });
 
-[sectorsInput, restClassInput].forEach(el => el.addEventListener('change', calculateFDP));
+// Event Listeners for Calculations
+[reportTimeInput, sectorsInput, restClassInput].forEach(element => {
+    element.addEventListener('change', calculateFDP);
+});
 
 function calculateFDP() {
     const timeVal = reportTimeInput.value;
-    if (!timeVal || timeVal.length < 5) return;
+    if (!timeVal) return;
 
-    const [hours, minutes] = timeVal.split(':').map(Number);
-    if (hours > 23 || minutes > 59) return;
-
+    // Save calculation session state locally
     localStorage.setItem('lastFdpEntryTime', timeVal);
     localStorage.setItem('lastFdpTimestamp', new Date().getTime());
 
+    // Compute absolute running time minutes from midnight
+    const [hours, minutes] = timeVal.split(':').map(Number);
     const totalReportMinutes = (hours * 60) + minutes;
+
     const crewType = crewTypeInput.value;
     const config = regulatoryData[crewType];
+    
+    // Determine target filter sub-parameter
     const subParam = (crewType === 'single_crew') ? sectorsInput.value : restClassInput.value;
 
+    // Search corresponding bracket match
     const matchedBracket = config.brackets.find(b => totalReportMinutes >= b.startMin && totalReportMinutes <= b.endMin);
 
     if (matchedBracket) {
         const maxFDP = matchedBracket.fdp[subParam];
         const maxFLT = matchedBracket.maxFT;
 
-        maxFdpDisplay.textContent = `${maxFDP} h`;
-        maxFltDisplay.textContent = `${maxFLT} h`;
+        // Render standard readouts
+        maxFdpDisplay.textContent = `${maxFDP} hrs`;
+        maxFltDisplay.textContent = `${maxFLT} hrs`;
 
+        // Calculate and format final on-block time
         const fdpMinutes = maxFDP * 60;
-        const totalBlockMinutes = (totalReportMinutes + fdpMinutes) % 1440;
+        const totalBlockMinutes = (totalReportMinutes + fdpMinutes) % 1440; // Clock rollover handling
 
         const blockHours = String(Math.floor(totalBlockMinutes / 60)).padStart(2, '0');
         const blockMins = String(totalBlockMinutes % 60).padStart(2, '0');

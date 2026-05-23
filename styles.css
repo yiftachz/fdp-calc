@@ -1,211 +1,151 @@
 :root {
-    --bg: #0a0e17; 
-    --surface: #111827; 
-    --surface2: #1a2235; 
-    --border: #1e3a5f;
-    --accent: #0ea5e9; 
-    --accent2: #38bdf8; 
-    --text: #e2e8f0; 
-    --muted: #64748b;
-    --success: #10b981; 
-    --mono: 'Share Tech Mono', monospace; 
+  --bg: #0a0e17; 
+  --surface: #111827; 
+  --surface2: #1a2235; 
+  --border: #1e3a5f;
+  --accent: #0ea5e9; 
+  --accent2: #38bdf8; 
+  --text: #e2e8f0; 
+  --muted: #64748b;
+  --success: #10b981; 
+  --mono: 'Share Tech Mono', monospace; 
+  --sans: 'Barlow', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+}
+
+
+
+:root {
+    --bg-color: #0a0e17;     /* Dark navy flight deck background */
+    --card-bg: #111827;      /* Clean surface container */
+    --text-main: #e2e8f0;    /* Bright legible text */
+    --text-muted: #64748b;   /* Soft slate muted metadata */
+    --accent: #0ea5e9;       /* Tactical primary blue */
+    --accent2: #38bdf8;      /* Secondary electric blue */
+    --border: #1e3a5f;       /* Aviation console border tint */
+    --success: #10b981;      /* Clean cockpit green */
+    --mono: 'Share Tech Mono', monospace;
     --sans: 'Barlow', sans-serif;
 }
 
-* { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--sans); /* Switches default font to Barlow */
 }
 
-body { 
-    background: var(--bg); 
-    color: var(--text); 
-    font-family: var(--sans); 
-    font-weight: 400; 
-    min-height: 100vh; 
-    padding: 0 0 40px 0; 
-}
-
-/* Header UI Profile Symmetry */
-.header { 
-    background: var(--surface); 
-    border-bottom: 1px solid var(--border); 
-    padding: 16px 20px; 
-    position: sticky; 
-    top: 0; 
-    z-index: 100; 
-    display: flex; 
-    align-items: center; 
-    gap: 12px; 
-}
-
-.header-icon { 
-    width: 32px; 
-    height: 32px; 
-    background: var(--accent); 
-    border-radius: 6px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 16px; 
-    flex-shrink: 0; 
-}
-
-.header-title { 
-    font-family: var(--mono); 
-    font-size: 14px; 
-    color: var(--accent2); 
-    letter-spacing: 0.08em; 
-    text-transform: uppercase; 
-}
-
-.header-sub { 
-    font-size: 11px; 
-    color: var(--muted); 
-    margin-top: 1px; 
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    padding: 16px;
 }
 
 .app-container {
-    padding: 0 16px;
-    max-width: 480px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.section { 
-    margin-top: 20px; 
+header h1 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+    color: var(--text-muted);
+    padding: 8px 0;
 }
 
-.section-label { 
-    font-family: var(--mono); 
-    font-size: 10px; 
-    letter-spacing: 0.15em; 
-    text-transform: uppercase; 
-    color: var(--accent); 
-    padding: 0 4px 8px 4px; 
-    border-bottom: 1px solid var(--border); 
-    margin-bottom: 12px; 
-}
-
-.field { 
-    margin-bottom: 12px; 
-}
-
-.field label { 
-    display: block; 
-    font-size: 11px; 
-    font-weight: 500; 
-    color: var(--muted); 
-    letter-spacing: 0.06em; 
-    text-transform: uppercase; 
-    margin-bottom: 4px; 
-    padding-left: 2px; 
-}
-
-/* Explicit Entry Fields */
-.field input[type="text"] { 
-    width: 100%; 
-    background: var(--surface2); 
-    border: 1px solid var(--border); 
-    border-radius: 6px; 
-    color: var(--text); 
-    font-family: var(--mono); 
-    font-size: 15px; 
-    padding: 10px 12px; 
-    outline: none; 
-    transition: border-color 0.15s; 
-    -webkit-appearance: none; 
-    appearance: none; 
-}
-
-.field input:focus { 
-    border-color: var(--accent); 
-}
-
-.custom-select-wrap { 
-    position: relative; 
-}
-
-.custom-select-wrap::after { 
-    content: ''; 
-    position: absolute; 
-    right: 12px; 
-    top: 50%; 
-    transform: translateY(-50%); 
-    width: 0; 
-    height: 0; 
-    border-left: 5px solid transparent; 
-    border-right: 5px solid transparent; 
-    border-top: 5px solid var(--muted); 
-    pointer-events: none; 
-}
-
-.custom-select-wrap select { 
-    width: 100%; 
-    background: var(--surface2); 
-    border: 1px solid var(--border); 
-    border-radius: 6px; 
-    color: var(--text); 
-    font-family: var(--mono); 
-    font-size: 15px; 
-    padding: 10px 32px 10px 12px; 
-    outline: none; 
-    transition: border-color 0.15s; 
-    -webkit-appearance: none; 
-    appearance: none; 
-    color-scheme: dark; 
-    cursor: pointer; 
-}
-
-.grid-2 { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 10px; 
-}
-
-.hidden { 
-    display: none !important; 
-}
-
-/* Integrated Output Terminal Card Block */
-.output-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
+.card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
     padding: 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.input-group:last-child {
+    margin-bottom: 0;
+}
+
+label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+input[type="time"], select {
+    background-color: #2a2a2a;
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    padding: 14px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+    appearance: none; /* Removes default mobile styling arrow safely */
+}
+
+input[type="time"]:focus, select:focus {
+    border-color: var(--accent);
+}
+
+.context-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.inline-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Output Card Styling */
+.output-card {
     display: flex;
     flex-direction: column;
     gap: 20px;
-}
-
-.main-output {
     text-align: center;
-}
-
-.main-output label {
-    font-size: 11px;
-    text-transform: uppercase;
-    color: var(--muted);
-    letter-spacing: 0.08em;
+    background: linear-gradient(135deg, #1e1e1e 0%, #151515 100%);
 }
 
 .main-output .value {
-    font-family: var(--mono);
-    font-size: 3.2rem;
-    font-weight: bold;
+    font-size: 3.5rem;
+    font-weight: 800;
     margin-top: 4px;
 }
 
 .highlight {
-    color: var(--success);
-    text-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
+    color: var(--accent);
+    text-shadow: 0 0 10px rgba(0, 230, 118, 0.2);
 }
 
 .secondary-outputs {
     display: flex;
     border-top: 1px solid var(--border);
     padding-top: 16px;
-    text-align: center;
 }
 
 .output-box {
@@ -216,14 +156,8 @@ body {
     border-right: 1px solid var(--border);
 }
 
-.output-box label {
-    font-size: 10px;
-    color: var(--muted);
-}
-
 .output-box .value {
-    font-family: var(--mono);
-    font-size: 1.5rem;
-    color: var(--text);
-    margin-top: 2px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-top: 4px;
 }
