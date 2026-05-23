@@ -4,83 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>FDP Calculator</title>
+    <!-- Combined Typography Links -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#121212">
+    <meta name="theme-color" content="#0a0e17">
 </head>
 <body>
+
+    <!-- EFB Styled Header Layer -->
+    <div class="header">
+        <div class="header-icon">✈</div>
+        <div>
+            <div class="header-title">FDP Calculator</div>
+            <div class="header-sub">Maximum Duty & Flight Time Limitations</div>
+        </div>
+    </div>
+
     <div class="app-container">
-        <header>
-            <h1>FDP COMMAND</h1>
-        </header>
-
-        <!-- INPUT SECTION -->
-        <main class="card input-card">
-            <div class="input-group">
-                <label for="reportTime">Report Time</label>
-                <!-- native time field allows direct typing on mobile -->
-                <input type="time" id="reportTime" required>
+        <!-- INPUT CONTROL PANEL -->
+        <div class="section">
+            <div class="section-label">Duty Parameters</div>
+            
+            <div class="field">
+                <label for="reportTime">Scheduled Report Time (Local)</label>
+                <!-- type="text" with pattern avoids forced mobile scrolling wheels -->
+                <input type="text" id="reportTime" placeholder="00:00" inputmode="numeric" maxlength="5" required>
             </div>
 
-            <div class="input-group">
+            <div class="field">
                 <label for="crewType">Crew Configuration</label>
-                <select id="crewType">
-                    <option value="single_crew" selected>Single Crew</option>
-                    <option value="augmented_3_pilots">Augmented (3 Pilots)</option>
-                    <option value="double_4_pilots">Double (4 Pilots)</option>
-                </select>
+                <div class="custom-select-wrap">
+                    <select id="crewType">
+                        <option value="single_crew" selected>Single Crew</option>
+                        <option value="augmented_3_pilots">Augmented (3 Pilots)</option>
+                        <option value="double_4_pilots">Double (4 Pilots)</option>
+                    </select>
+                </div>
             </div>
 
-            <!-- Inconspicuous Conditional Row -->
-            <div class="context-row">
-                <div class="input-group inline-group" id="sectorGroup">
+            <!-- Inconspicuous Context Fields -->
+            <div class="grid-2">
+                <div class="field" id="sectorGroup">
                     <label for="sectors">Sectors</label>
-                    <select id="sectors">
-                        <option value="1-2" selected>1-2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7+">7+</option>
-                    </select>
+                    <div class="custom-select-wrap">
+                        <select id="sectors">
+                            <option value="1-2" selected>1-2 Sectors</option>
+                            <option value="3">3 Sectors</option>
+                            <option value="4">4 Sectors</option>
+                            <option value="5">5 Sectors</option>
+                            <option value="6">6 Sectors</option>
+                            <option value="7+">7+ Sectors</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div class="input-group inline-group hidden" id="restGroup">
+                <div class="field hidden" id="restGroup">
                     <label for="restClass">Rest Facility</label>
-                    <select id="restClass">
-                        <option value="Class 1">Class 1</option>
-                        <option value="Class 2" selected>Class 2</option>
-                        <option value="Class 3">Class 3</option>
-                    </select>
+                    <div class="custom-select-wrap">
+                        <select id="restClass">
+                            <option value="Class 1">Class 1 Facility</option>
+                            <option value="Class 2" selected>Class 2 Facility</option>
+                            <option value="Class 3">Class 3 Facility</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </main>
+        </div>
 
-        <!-- OUTPUT SECTION -->
-        <section class="card output-card">
-            <div class="main-output">
-                <label>Final On-Block</label>
-                <div id="finalOnBlock" class="value highlight">--:--</div>
-            </div>
-            <div class="secondary-outputs">
-                <div class="output-box">
-                    <label>Max FDP</label>
-                    <div id="maxFdp" class="value">--</div>
+        <!-- FLIGHT DECK READOUT (OUTPUTS) -->
+        <div class="section">
+            <div class="section-label">Operational Limits</div>
+            <div class="output-card">
+                <div class="main-output">
+                    <label>Final On-Block Time</label>
+                    <div id="finalOnBlock" class="value highlight">--:--</div>
                 </div>
-                <div class="output-box">
-                    <label>Max FLT</label>
-                    <div id="maxFlt" class="value">--</div>
+                
+                <div class="secondary-outputs">
+                    <div class="output-box">
+                        <label>Max FDP</label>
+                        <div id="maxFdp" class="value">--</div>
+                    </div>
+                    <div class="output-box">
+                        <label>Max FLT</label>
+                        <div id="maxFlt" class="value">--</div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
 
     <script src="app.js"></script>
     <script>
-        // Register service worker for 100% offline access
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.js')
-                .then(() => console.log("Service Worker Active"));
+                .then(() => console.log("Offline Engine Ready"));
         }
     </script>
 </body>

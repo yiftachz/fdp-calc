@@ -1,6 +1,6 @@
 {
-  "short_name": "FDP Cmd",
-  "name": "Flight Duty Period Commander",
+  "short_name": "FDP Calc",
+  "name": "FDP Calculator",
   "icons": [
     {
       "src": "https://cdn-icons-png.flaticon.com/512/984/984233.png",
@@ -9,8 +9,8 @@
     }
   ],
   "start_url": "./index.html",
-  "background_color": "#121212",
-  "theme-color": "#121212",
+  "background_color": "#0a0e17",
+  "theme-color": "#0a0e17",
   "display": "standalone",
   "orientation": "portrait"
 }
