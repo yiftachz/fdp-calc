@@ -2,39 +2,38 @@
 const regulatoryData = {
     "single_crew": {
         "brackets": [
-            { "startMin": 0, "endMin": 239, "maxFT": 8, "fdp": { "1-2": 9, "3": 9, "4": 9, "5": 9, "6": 9, "7+": 9 } },
-            { "startMin": 240, "endMin": 299, "maxFT": 8, "fdp": { "1-2": 10, "3": 10, "4": 10, "5": 9, "6": 9, "7+": 9 } },
-            { "startMin": 300, "endMin": 359, "maxFT": 9, "fdp": { "1-2": 12, "3": 12, "4": 12, "5": 11.5, "6": 11, "7+": 10.5 } },
-            { "startMin": 360, "endMin": 419, "maxFT": 9, "fdp": { "1-2": 13, "3": 13, "4": 13, "5": 11.5, "6": 11, "7+": 10.5 } },
-            { "startMin": 420, "endMin": 719, "maxFT": 9, "fdp": { "1-2": 14, "3": 13, "4": 13, "5": 12.5, "6": 12, "7+": 11.5 } },
-            { "startMin": 720, "endMin": 779, "maxFT": 9, "fdp": { "1-2": 13, "3": 13, "4": 13, "5": 12.5, "6": 12, "7+": 11.5 } },
-            { "startMin": 780, "endMin": 1019, "maxFT": 9, "fdp": { "1-2": 12, "3": 12, "4": 12, "5": 11.5, "6": 11, "7+": 10.5 } },
-            { "startMin": 1020, "endMin": 1199, "maxFT": 9, "fdp": { "1-2": 12, "3": 11, "4": 11, "5": 10, "6": 9, "7+": 9 } },
-            { "startMin": 1200, "endMin": 1319, "maxFT": 9, "fdp": { "1-2": 12, "3": 11, "4": 11, "5": 10, "6": 9, "7+": 9 } },
-            { "startMin": 1320, "endMin": 1379, "maxFT": 8, "fdp": { "1-2": 11, "3": 10, "4": 10, "5": 9, "6": 9, "7+": 9 } },
-            { "startMin": 1380, "endMin": 1439, "maxFT": 8, "fdp": { "1-2": 10, "3": 10, "4": 9, "5": 9, "6": 9, "7+": 9 } }
+            { "label": "00:00 - 03:59", "startMin": 0, "endMin": 239, "maxFT": 8, "fdp": { "1-2": 9, "3": 9, "4": 9, "5": 9, "6": 9, "7+": 9 } },
+            { "label": "04:00 - 04:59", "startMin": 240, "endMin": 299, "maxFT": 8, "fdp": { "1-2": 10, "3": 10, "4": 10, "5": 9, "6": 9, "7+": 9 } },
+            { "label": "05:00 - 05:59", "startMin": 300, "endMin": 359, "maxFT": 9, "fdp": { "1-2": 12, "3": 12, "4": 12, "5": 11.5, "6": 11, "7+": 10.5 } },
+            { "label": "06:00 - 06:59", "startMin": 360, "endMin": 419, "maxFT": 9, "fdp": { "1-2": 13, "3": 13, "4": 13, "5": 11.5, "6": 11, "7+": 10.5 } },
+            { "label": "07:00 - 11:59", "startMin": 420, "endMin": 719, "maxFT": 9, "fdp": { "1-2": 14, "3": 13, "4": 13, "5": 12.5, "6": 12, "7+": 11.5 } },
+            { "label": "12:00 - 12:59", "startMin": 720, "endMin": 779, "maxFT": 9, "fdp": { "1-2": 13, "3": 13, "4": 13, "5": 12.5, "6": 12, "7+": 11.5 } },
+            { "label": "13:00 - 16:59", "startMin": 780, "endMin": 1019, "maxFT": 9, "fdp": { "1-2": 12, "3": 12, "4": 12, "5": 11.5, "6": 11, "7+": 10.5 } },
+            { "label": "17:00 - 19:59", "startMin": 1020, "endMin": 1199, "maxFT": 9, "fdp": { "1-2": 12, "3": 11, "4": 11, "5": 10, "6": 9, "7+": 9 } },
+            { "label": "20:00 - 21:59", "startMin": 1200, "endMin": 1319, "maxFT": 9, "fdp": { "1-2": 12, "3": 11, "4": 11, "5": 10, "6": 9, "7+": 9 } },
+            { "label": "22:00 - 22:59", "startMin": 1320, "endMin": 1379, "maxFT": 8, "fdp": { "1-2": 11, "3": 10, "4": 10, "5": 9, "6": 9, "7+": 9 } },
+            { "label": "23:00 - 23:59", "startMin": 1380, "endMin": 1439, "maxFT": 8, "fdp": { "1-2": 10, "3": 10, "4": 9, "5": 9, "6": 9, "7+": 9 } }
         ]
     },
     "augmented_3_pilots": {
         "brackets": [
-            { "startMin": 0, "endMin": 359, "maxFT": 13, "fdp": { "Class 1": 15, "Class 2": 14, "Class 3": 13 } },
-            { "startMin": 360, "endMin": 419, "maxFT": 13, "fdp": { "Class 1": 16, "Class 2": 15, "Class 3": 14 } },
-            { "startMin": 420, "endMin": 779, "maxFT": 13, "fdp": { "Class 1": 17, "Class 2": 16.5, "Class 3": 15 } },
-            { "startMin": 780, "endMin": 1019, "maxFT": 13, "fdp": { "Class 1": 16, "Class 2": 15, "Class 3": 14 } },
-            { "startMin": 1020, "endMin": 1439, "maxFT": 13, "fdp": { "Class 1": 15, "Class 2": 14, "Class 3": 13 } }
+            { "label": "00:00 - 05:59", "startMin": 0, "endMin": 359, "maxFT": 13, "fdp": { "Class 1": 15, "Class 2": 14, "Class 3": 13 } },
+            { "label": "06:00 - 06:59", "startMin": 360, "endMin": 419, "maxFT": 13, "fdp": { "Class 1": 16, "Class 2": 15, "Class 3": 14 } },
+            { "label": "07:00 - 12:59", "startMin": 420, "endMin": 779, "maxFT": 13, "fdp": { "Class 1": 17, "Class 2": 16.5, "Class 3": 15 } },
+            { "label": "13:00 - 16:59", "startMin": 780, "endMin": 1019, "maxFT": 13, "fdp": { "Class 1": 16, "Class 2": 15, "Class 3": 14 } },
+            { "label": "17:00 - 23:59", "startMin": 1020, "endMin": 1439, "maxFT": 13, "fdp": { "Class 1": 15, "Class 2": 14, "Class 3": 13 } }
         ]
     },
     "double_4_pilots": {
         "brackets": [
-            { "startMin": 0, "endMin": 359, "maxFT": 17, "fdp": { "Class 1": 17, "Class 2": 15.5, "Class 3": 13.5 } },
-            { "startMin": 360, "endMin": 419, "maxFT": 17, "fdp": { "Class 1": 18.5, "Class 2": 16.5, "Class 3": 14.5 } },
-            { "startMin": 420, "endMin": 779, "maxFT": 17, "fdp": { "Class 1": 19, "Class 2": 18, "Class 3": 15.5 } },
-            { "startMin": 780, "endMin": 1019, "maxFT": 17, "fdp": { "Class 1": 18.5, "Class 2": 16.5, "Class 3": 14.5 } },
-            { "startMin": 1020, "endMin": 1439, "maxFT": 17, "fdp": { "Class 1": 17, "Class 2": 15.5, "Class 3": 13.5 } }
+            { "label": "00:00 - 05:59", "startMin": 0, "endMin": 359, "maxFT": 17, "fdp": { "Class 1": 17, "Class 2": 15.5, "Class 3": 13.5 } },
+            { "label": "06:00 - 06:59", "startMin": 360, "endMin": 419, "maxFT": 17, "fdp": { "Class 1": 18.5, "Class 2": 16.5, "Class 3": 14.5 } },
+            { "label": "07:00 - 12:59", "startMin": 420, "endMin": 779, "maxFT": 17, "fdp": { "Class 1": 19, "Class 2": 18, "Class 3": 15.5 } },
+            { "label": "13:00 - 16:59", "startMin": 780, "endMin": 1019, "maxFT": 17, "fdp": { "Class 1": 18.5, "Class 2": 16.5, "Class 3": 14.5 } },
+            { "label": "17:00 - 23:59", "startMin": 1020, "endMin": 1439, "maxFT": 17, "fdp": { "Class 1": 17, "Class 2": 15.5, "Class 3": 13.5 } }
         ]
     }
 };
-
 // DOM Elements
 const reportTimeInput = document.getElementById('reportTime');
 const crewTypeInput = document.getElementById('crewType');
