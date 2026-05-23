@@ -138,7 +138,11 @@ document.getElementById('updateBtn').addEventListener('click', async () => {
                     btn.style.color = "var(--success)";
                     btn.style.borderColor = "var(--success)";
                     registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-                    setTimeout(() => window.location.reload(), 600);
+                    
+                    // Force a deep cache-busting reload instead of a basic reload
+                    setTimeout(() => {
+                        window.location.href = window.location.pathname + '?clear-cache=' + Date.now();
+                    }, 600);
                 } else {
                     btn.textContent = "Up To Date ✓";
                     btn.style.color = "var(--success)";
